@@ -1,0 +1,6 @@
+# A build command is required: extensions inject edge functions during the
+# build, and a site with no build step never gets one. The command does
+# nothing; the publish directory is the repository root.
+[build]
+command = "echo 'static site; the build step exists so extensions can inject'"
+publish = "."
