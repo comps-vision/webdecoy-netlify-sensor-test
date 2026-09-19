@@ -1,6 +1,17 @@
 # A build command is required: extensions inject edge functions during the
 # build, and a site with no build step never gets one. The command does
-# nothing; the publish directory is the repository root.
+# nothing else; the publish directory is the repository root.
 [build]
-command = "echo 'static site; the build step exists so extensions can inject'"
+command = "mkdir -p .netlify/edge-functions && cp spike/webdecoy-diag.ts .netlify/edge-functions/webdecoy-diag.ts && echo 'static site; the build step exists so extensions can inject'"
 publish = "."
+
+# WebDecoy/app#1186 rewrite probe (deploy preview only).
+[[redirects]]
+from = "/rw-plain/*"
+to = "/about.html"
+status = 200
+
+[[redirects]]
+from = "/rw-next/*"
+to = "/about.html"
+status = 200
